@@ -7,7 +7,12 @@ SERVER_URL = os.getenv("SERVER_URL")
 SERVER_PORT = os.getenv("SERVER_PORT")
 LOGIN = os.getenv("LOGIN")
 PASSWORD = os.getenv("PASSWORD")
-save_path = "C:\\net_ssd\\torrents\\distr"
+paths = {
+        "distr": "C:\\net_ssd\\HDD\\torrents\\distr",
+        "serial": "C:\\net_ssd\\HDD\\torrents\\media\\serials",
+        "film": "C:\\net_ssd\\HDD\\torrents\\media\\films"
+        }
+save_path = paths["distr"]
 
 bot = telebot.TeleBot(TOKEN)
 
@@ -21,21 +26,21 @@ def start(message):
 @bot.message_handler(commands=["programm"])
 def set_path_program(message):
     global save_path
-    save_path = "C:\\net_ssd\\torrents\\distr"
+    save_path = paths["distr"]
     bot.send_message(message.chat.id, f"Данные будут сохранены в\n{save_path}\nОжидаю торрент файл")
 
 
 @bot.message_handler(commands=["serial"])
 def set_path_serial(message):
     global save_path
-    save_path = "C:\\net_ssd\\torrents\\media\\serials"
+    save_path = paths["serial"]
     bot.send_message(message.chat.id, f"Данные будут сохранены в\n{save_path}\nОжидаю торрент файл")
 
 
 @bot.message_handler(commands=["film"])
 def set_path_film(message):
     global save_path
-    save_path = "C:\\net_ssd\\torrents\\media\\films"
+    save_path = paths["film"]
     bot.send_message(message.chat.id, f"Данные будут сохранены в\n{save_path}\nОжидаю торрент файл")
 
 
